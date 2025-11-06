@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>For Nicole — A Birthday in Code</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+    :root{--bg:#0f1724;--card:#0b1220;--accent:#ffb4c6;--muted:#9aa6b2}
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial;background:linear-gradient(180deg,#071026 0%, #071423 60%, #071823 100%);color:#e6eef6}
+    .container{max-width:920px;margin:36px auto;padding:28px}
+    header{display:flex;align-items:center;gap:18px}
+    .logo{width:76px;height:76px;border-radius:16px;background:linear-gradient(135deg,#ffe6f0,#ffd1e3);display:flex;align-items:center;justify-content:center;font-family:'Great Vibes';font-size:28px;color:#282828}
+    h1{font-weight:700;margin:0;font-size:22px}
+    p.lead{margin:6px 0 18px;color:var(--muted)}
+
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));border:1px solid rgba(255,255,255,0.03);padding:18px;border-radius:14px;backdrop-filter: blur(6px);box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+
+    .row{display:grid;grid-template-columns:1fr 320px;gap:18px}
+    .center{display:flex;flex-direction:column;gap:12px}
+
+    .countdown{display:flex;gap:12px}
+    .countdown .block{background:rgba(255,255,255,0.03);padding:14px;border-radius:10px;text-align:center;min-width:68px}
+    .block .num{font-weight:800;font-size:18px}
+    .block .label{font-size:12px;color:var(--muted)}
+
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .event{display:flex;gap:12px;align-items:flex-start}
+    .dot{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 18px rgba(255,180,198,0.12)}
+    .event .body{background:rgba(255,255,255,0.02);padding:12px;border-radius:10px;flex:1}
+
+    .envelopes{display:flex;gap:12px;flex-wrap:wrap}
+    .env{width:140px;height:100px;border-radius:10px;background:linear-gradient(180deg,#0b1220,#07101a);display:flex;align-items:center;justify-content:center;cursor:pointer;position:relative;overflow:hidden;border:1px solid rgba(255,255,255,0.02)}
+    .env.locked::after{content:'Locked';position:absolute;right:8px;top:8px;background:rgba(0,0,0,0.45);padding:4px 8px;border-radius:999px;font-size:12px;color:var(--muted)}
+    .env .label{font-size:13px;text-align:center;padding:8px}
+
+    .reveal{padding:12px;border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);}
+
+    footer{margin-top:18px;color:var(--muted);font-size:13px}
+
+    /* small screens */
+    @media (max-width:900px){.row{grid-template-columns:1fr;}.logo{width:60px;height:60px}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">N♡</div>
+      <div>
+        <h1>For Nicole — A Birthday in Code</h1>
+        <p class="lead">Open this page on her birthday (Nov 8) and again when you meet her (Nov 10). Some things unlock on dates to keep the surprise alive.</p>
+      </div>
+    </header>
+
+    <div class="row" style="margin-top:18px">
+      <div class="center card">
+        <div>
+          <div style="display:flex;justify-content:space-between;align-items:center;gap:12px">
+            <div>
+              <strong>Countdown to seeing her (Nov 10)</strong>
+              <div style="font-size:13px;color:var(--muted)">Timezone: your device's local time</div>
+            </div>
+            <div id="countdown" class="countdown"></div>
+          </div>
+        </div>
+
+        <div style="margin-top:14px" class="reveal">
+          <strong>Envelopes (click to open)</strong>
+          <p style="margin:6px 0;color:var(--muted)">Each envelope unlocks on a certain date/time — hover to see the unlock date.</p>
+          <div class="envelopes" id="envelopes"></div>
+        </div>
+
+        <div style="margin-top:14px" class="reveal">
+          <strong>Unlocked surprise</strong>
+          <div id="unlockedArea" style="margin-top:10px;color:var(--muted)">Nothing revealed yet — wait for the right moment ❤️</div>
+        </div>
+
+      </div>
+
+      <aside class="card">
+        <strong>Quick storyboard</strong>
+        <div class="timeline" style="margin-top:12px">
+          <div class="event"><div class="dot"></div><div class="body"><strong>Nov 8 — Birthday while apart</strong><div style="color:var(--muted);font-size:13px">A heartfelt video + playlist and a "Open when you miss me" envelope will be available.</div></div></div>
+          <div class="event"><div class="dot"></div><div class="body"><strong>Nov 9 — Arrival day</strong><div style="color:var(--muted);font-size:13px">A small location hint or scavenger clue can be unlocked (optional).</div></div></div>
+          <div class="event"><div class="dot"></div><div class="body"><strong>Nov 10 — In-person reveal</strong><div style="color:var(--muted);font-size:13px">Full message, slideshow, and a printable keepsake become available.</div></div></div>
+        </div>
+
+        <div style="margin-top:14px">
+          <strong>How to use</strong>
+          <ol style="color:var(--muted);font-size:13px">
+            <li>Open this file in a browser on your phone or laptop.</li>
+            <li>Customize the small JSON at the top of the script with personal messages & photos.</li>
+            <li>Share the file URL or QR with Nicole (or open it when you're together).</li>
+          </ol>
+        </div>
+
+      </aside>
+    </div>
+
+    <footer>Made with ♥ — edit the messages and images in the source. Open on Nov 8 and Nov 10 for the full effect.</footer>
+  </div>
+
+<script>
+/*
+  Edit these variables to personalize the experience.
+  - dates are local date-times on the device viewing the page.
+*/
+const config = {
+  herName: 'Nicole',
+  openWhen: [
+    {id:'miss', title:'Open when you miss me', unlock: '2025-11-08T08:00:00', content: `Hey ${'Nicole'}, I know we're apart today but you're always with me. Listen to this:`},
+    {id:'arrive', title:'Arrival surprise', unlock: '2025-11-09T19:00:00', content: `Welcome home, baby — a small clue awaits you when you step out.`},
+    {id:'meet', title:'Open when we meet', unlock: '2025-11-10T00:00:00', content: `Now that we're together, here's everything — a slideshow of us, a letter, and a tiny promise.`}
+  ],
+  // Replace these with real image URLs (or base64). Keep at least one image.
+  photos: [
+    'https://images.unsplash.com/photo-1501601960853-7a9d6f41f9b3?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder',
+    'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1600&auto=format&fit=crop&ixlib=rb-4.0.3&s=placeholder'
+  ],
+  playlistURL: '', // optional Spotify/YouTube link
+  letterHTML: `<p>Nicole —</p><p>Happy birthday. You make ordinary days beautiful. I can't wait to hold you again.</p><p>Always, [your name]</p>`
+}
+
+// -- utils
+function parseISOLocal(s){ return new Date(s); }
+function formatTwo(n){ return String(n).padStart(2,'0') }
+
+// countdown
+const target = parseISOLocal('2025-11-10T18:00:00'); // you can adjust to the exact time you'll meet
+function updateCountdown(){
+  const now = new Date();
+  let diff = Math.max(0, target - now);
+  const days = Math.floor(diff / (24*3600*1000));
+  diff -= days*24*3600*1000;
+  const hours = Math.floor(diff / (3600*1000));
+  diff -= hours*3600*1000;
+  const mins = Math.floor(diff / (60*1000));
+  diff -= mins*60*1000;
+  const secs = Math.floor(diff/1000);
+  const el = document.getElementById('countdown');
+  el.innerHTML = `
+    <div class="block"><div class="num">${days}</div><div class="label">days</div></div>
+    <div class="block"><div class="num">${formatTwo(hours)}</div><div class="label">hours</div></div>
+    <div class="block"><div class="num">${formatTwo(mins)}</div><div class="label">mins</div></div>
+    <div class="block"><div class="num">${formatTwo(secs)}</div><div class="label">secs</div></div>
+  `;
+}
+setInterval(updateCountdown, 250);
+updateCountdown();
+
+// envelopes
+const envelopesEl = document.getElementById('envelopes');
+const unlockedArea = document.getElementById('unlockedArea');
+
+function renderEnvelopes(){
+  envelopesEl.innerHTML = '';
+  config.openWhen.forEach(item=>{
+    const unlockDate = parseISOLocal(item.unlock);
+    const now = new Date();
+    const locked = now < unlockDate;
+    const div = document.createElement('div');
+    div.className = 'env' + (locked? ' locked': '');
+    div.title = 'Unlocks: ' + unlockDate.toLocaleString();
+    const label = document.createElement('div');
+    label.className = 'label';
+    label.innerText = item.title;
+    div.appendChild(label);
+    div.addEventListener('click', ()=>{
+      if(now < unlockDate){
+        alert(`This opens on ${unlockDate.toLocaleString()}. Hold on — the moment will be sweeter.`);
+        return;
+      }
+      openEnvelope(item);
+    });
+    envelopesEl.appendChild(div);
+  });
+}
+
+function openEnvelope(item){
+  // show content in unlocked area
+  const html = `
+    <div style="padding:12px">
+      <h3>${item.title}</h3>
+      <div style="margin-top:8px">${item.content}</div>
+      <div style="margin-top:12px">${renderExtraFor(item.id)}</div>
+    </div>
+  `;
+  unlockedArea.innerHTML = html;
+}
+
+function renderExtraFor(id){
+  if(id === 'miss'){
+    return `
+      <div style="margin-top:8px;color:var(--muted)">[Video placeholder] — replace with a link or upload a short clip file.</div>
+      <div style="margin-top:10px">${config.playlistURL? `<a href="${config.playlistURL}" target="_blank">Open playlist</a>`: ''}</div>
+    `
+  }
+  if(id === 'meet'){
+    // create slideshow
+    let slides = config.photos.map((p,i)=>`<img src="${p}" alt="photo${i}" style="max-width:100%;border-radius:8px;margin-top:8px">`).join('');
+    return `${slides}<div style="margin-top:8px;color:var(--muted)">${config.letterHTML}</div>`;
+  }
+  if(id === 'arrive'){
+    return `<div style="color:var(--muted)">A tiny riddle: "Where we first laughed together" — lead her there for a small gift.</div>`
+  }
+  return '';
+}
+
+renderEnvelopes();
+
+// automatic unlock check (updates styles when time passes)
+setInterval(()=>{
+  renderEnvelopes();
+}, 5000);
+
+// bonus: a simple print-friendly keepsake generator
+function makeKeepsake(){
+  const w = window.open('','print');
+  w.document.write(`<html><head><title>For ${config.herName}</title></head><body style="font-family:Inter;margin:40px;color:#111"><h1>To ${config.herName}</h1>${config.letterHTML}<p style="margin-top:40px">From: [your name]</p></body></html>`);
+  w.document.close();
+  w.focus();
+}
+
+// expose to global for easy testing in console
+window._bb = {config, openEnvelope, makeKeepsake};
+</script>
+</body>
+</html>
