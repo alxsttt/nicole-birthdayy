@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>For Nicole — A Birthday in Code</title>
+  <title>For Nicole! Celebrating you</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
   <style>
     :root{--bg:#0f1724;--card:#0b1220;--accent:#ffb4c6;--muted:#9aa6b2}
@@ -81,8 +81,8 @@
       <aside class="card">
         <strong>Quick storyboard</strong>
         <div class="timeline" style="margin-top:12px">
-          <div class="event"><div class="dot"></div><div class="body"><strong>Nov 8 — Birthday while apart</strong><div style="color:var(--muted);font-size:13px">My fave photo of us + playlist envelope will be available.</div></div></div>
-          <div class="event"><div class="dot"></div><div class="body"><strong>Nov 9 — Arrival day</strong><div style="color:var(--muted);font-size:13px">A location from GMaps for our date hehe.</div></div></div>
+          <div class="event"><div class="dot"></div><div class="body"><strong>Nov 8 — Birthday while apart</strong><div style="color:var(--muted);font-size:13px">Something to read for your flight.</div></div></div>
+          <div class="event"><div class="dot"></div><div class="body"><strong>Nov 9 — Arrival day</strong><div style="color:var(--muted);font-size:13px">An invitation for you</div></div></div>
           <div class="event"><div class="dot"></div><div class="body"><strong>Nov 10 — In-person reveal</strong><div style="color:var(--muted);font-size:13px">A letter for you my baby!.</div></div></div>
         </div>
 
@@ -90,7 +90,7 @@
           <strong>How to use</strong>
           <ol style="color:var(--muted);font-size:13px">
             <li>Hi baby! Open this file in a browser on your phone or laptop.</li>
-            <li>Share the file URL or QR.</li>
+            <li>I love you so much!</li>
           </ol>
         </div>
 
@@ -109,8 +109,8 @@ const config = {
   herName: 'Nicole',
   openWhen: [
     {id:'miss', title:'Open it before you fly or sa layover', unlock: '2025-11-08T08:00:00', content: `Hi ${'Baby'}, I know we're apart today but always remember na you're always with me.`},
-    {id:'arrive', title:'Arrival surprise', unlock: '2025-11-09T19:00:00', content: `Welcome home, baby — a small clue awaits you when you step out.`},
-    {id:'meet', title:'Open when we meet', unlock: '2025-11-10T00:00:00', content: `Now that we're together, here's everything — a slideshow of us, a letter, and a tiny promise.`}
+    {id:'arrive', title:'Arrival surprise', unlock: '2025-11-09T19:00:00', content: `Welcome home, baby! Check your inbox for the invitation link.`},
+    {id:'meet', title:'Open when we meet', unlock: '2025-11-10T00:00:00', content: `Come see me for your letter hehe so sorry to keep you waiting.`}
   ],
   // Replace these with real image URLs (or base64). Keep at least one image.
   photos: [
@@ -167,7 +167,7 @@ function renderEnvelopes(){
     div.appendChild(label);
     div.addEventListener('click', ()=>{
       if(now < unlockDate){
-        alert(`This opens on ${unlockDate.toLocaleString()}. Hold on — the moment will be sweeter.`);
+        alert(`This opens on ${unlockDate.toLocaleString()}. Hold on hehe chill chill.`);
         return;
       }
       openEnvelope(item);
